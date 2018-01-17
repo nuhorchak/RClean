@@ -1,11 +1,11 @@
 Package: Rclean
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
+Title: Interactive Data Cleaning Tool for R users
 Version: 1.0
 Date: 2018-01-17
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one or more full sentences.
+Author: Nicholas Uhorchak
+Maintainer: nuhorchak@gmail.com
+Description: This package gives users the ability to interactively clean and preprocess data.
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.14)
 LinkingTo: Rcpp
