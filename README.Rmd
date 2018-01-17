@@ -1,0 +1,89 @@
+---
+title: "Uhorchak Analytic proposal review 1"
+author: "CPT Nicholas Uhorchak"
+date: "`r Sys.Date()`"
+output: github_document
+keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(knitr)
+library(readxl)
+```
+
+# Section 1 Basic Information
+
+## 1.1 Name
+ RClean
+ 
+## 1.2 Title
+   RClean, an interactive data cleaning tool provides users the dynamic ability to import and clean data.  At its core, it provides R users functionality similar to that of Microsoft Excel with regards to preparation of a dataset for analysis.
+   
+## 1.3 Description
+
+### 1.3A Features
+  Utilizing R to import and clean data is often a time consuming task.  Without preparation of the dataset in excel or other software, R users must use scripts or command line R code for this task.  The Interactive Data Cleaning tool will afford users the ability to do the following:
+  
+  - Import Data 
+  - Visually inspect the previously imported data 
+  - Select releveant data columns to retain/remove 
+  - Provide the ability to rename columns in the dataframe 
+  - Select relevant data rows to retain/remove 
+  - Provide the option to scale the data. 
+  - Provide the option to mean center the data 
+  - Provide the ability to impute missing numerical data 
+  - Provide the ability to encode nominal data to numerical data 
+  - Save the new data to a "cleaned" dataframe 
+  - Write the "clean" DF to excel document for future use
+  
+### 1.3B End users
+
+This analytic is being developed for those users in need of hasty data cleaning or those who would otherwise not wish to spend a large amount of time writing code to prepare data for analysis.  Typical users will have working knowledge of R, however prefer the point and click abilities of Microsoft Excel or other similar software.
+
+### 1.3C Required knowledge/skills
+
+Users must be able to navigate R studio and basic computer file structure.  In addition, they should be aware of the types of data contained in the dataset to be analyzed, whether numerical or categorical, such that they are aware of the application of some functions of this analytic tool.  Similarly, they should be aware of the statistica implication of imputation on a dataset and that imputation of large amounts of missing data can potentially skew analytical results.
+
+### 1.3D Statistical methods utilized
+
+Users that wish to utilize imputation on the dataset should have some knowledge of the methods applied to the data.  If in fact, large amounts of data are missing, they should be aware that simple mean imputation might not be the best answer and advanced imputation techniques should be utilized.
+
+### 1.3E R Packages utilized
+
+This analytic will utilize the following existing R packages:
+
+  - tidyverse
+  - mice
+  - shiny
+  - lubridate
+  - readxl
+
+## 1.4 End user access
+
+End users will use the associated R package.
+   
+## 1.5 Security concerns
+
+None at this point.
+   
+## 1.6 Design constraints
+
+None.
+
+# Section 2 Delivery and Schedule Information
+
+## 2.1 Feature Review
+
+
+```{r echo=FALSE}
+
+features <- read_excel("features.xlsx")
+```
+
+```{r echo=FALSE, include=TRUE}
+kable(features, format = "markdown", booktabs = T)
+
+```
+
