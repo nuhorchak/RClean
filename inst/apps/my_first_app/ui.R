@@ -15,5 +15,5 @@ ui <- fluidPage(title = 'My First App',
                                           tabPanel(title='Output Map',
                                                    plotOutput(outputId = "map")),
                                           tabPanel(title='Data Table',
-                                                   plotOutput(outputId = "table"))
+                                                   dataTableOutput(outputId = "table"))
                                         ))))
