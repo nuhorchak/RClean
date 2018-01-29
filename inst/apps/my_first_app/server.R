@@ -4,7 +4,7 @@ server <- function(input, output, session){
     map_data$value = map_data[,input$select]
     
     state_choropleth(df=map_data,
-                     title = colnames(map_data)[input$select],
+                     title = input$select,
                      num_colors = input$num_colors)
   })
   
