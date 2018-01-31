@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_hello_world
 List rcpp_hello_world();
-RcppExport SEXP _Rclean_rcpp_hello_world() {
+RcppExport SEXP _RClean_rcpp_hello_world() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,11 +17,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_Rclean_rcpp_hello_world", (DL_FUNC) &_Rclean_rcpp_hello_world, 0},
+    {"_RClean_rcpp_hello_world", (DL_FUNC) &_RClean_rcpp_hello_world, 0},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_Rclean(DllInfo *dll) {
+RcppExport void R_init_RClean(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

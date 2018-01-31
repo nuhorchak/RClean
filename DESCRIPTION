@@ -1,4 +1,4 @@
-Package: Rclean
+Package: RClean
 Type: Package
 Title: RClean, An Interactive Data Cleaning Tool Provides Users The Dynamic Ability To Import And Clean Data.  
 Version: 1.0
@@ -9,3 +9,4 @@ Description: Utilizing R to import and clean data is often a time consuming task
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.14)
 LinkingTo: Rcpp
+RoxygenNote: 6.0.1

@@ -1,5 +1,15 @@
-run_my_app <- function(dir){
-  app_dir <- dirname('C:\\Users\\nuhorchak\\Desktop\\OPER782\\Uhorchak_Analytic\\RClean\\inst\\apps\\my_first_app\\server.R')
+
+#' @title RClean
+#'
+#' @description Run as a shiny app
+#' 
+#' @param app_name character string for the directory of this package
+#' @param ... additional options passed to shinyAppDir
+#' 
+#' @return a printed shiny app
+#' 
+run_my_app <- function(app_name, ...){
+  app_dir <- system.file('apps', app_name, package='RClean')
   
-  shiny::shinyAppDir(app_dir)
+  shiny::shinyAppDir(appDir=app_dir, options = list(...))
 }
