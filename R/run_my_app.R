@@ -6,7 +6,7 @@
 #' @param app_name character string for the directory of this package
 #' @param ... additional options passed to shinyAppDir
 #' 
-#' @return a printed shiny app
+#' @return a printed shiny app output
 #' 
 #' @examples #using example is a complete seperate document, use this
 #' \dontrun{ run_my_app('my_first_app')}
