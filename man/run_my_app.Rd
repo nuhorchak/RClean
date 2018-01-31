@@ -17,3 +17,8 @@ a printed shiny app
 \description{
 Run as a shiny app
 }
+\examples{
+#using example is a complete seperate document, use this
+\dontrun{ run_my_app('my_first_app')}
+
+}
