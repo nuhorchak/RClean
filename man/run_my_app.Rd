@@ -12,7 +12,7 @@ run_my_app(app_name, ...)
 \item{...}{additional options passed to shinyAppDir}
 }
 \value{
-a printed shiny app
+a printed shiny app output
 }
 \description{
 Run as a shiny app

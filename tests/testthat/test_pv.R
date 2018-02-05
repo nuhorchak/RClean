@@ -16,3 +16,4 @@ test_that("pv computes correctly",{
   expect_gt(pv(FV=1000,.09,n=5),649)
   expect_equal(pv(FV=c(10,20),.09,n=5),c(6.5,13))
 })
+
