@@ -15,9 +15,6 @@ library(readxl)
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
 
-
-
-
 # Section 1 Basic Information
 
 ## 1.1 Name

@@ -1,3 +1,4 @@
+
 test_that("pv provides proper messages and warning",{
   expect_error(pv(FV="1000",.09, n=5))
   expect_error(pv(FV=list(1,2,3),.09, n=5))
