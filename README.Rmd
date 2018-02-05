@@ -1,5 +1,5 @@
 ---
-title: "Uhorchak Analytic proposal review 1"
+title: "Uhorchak Analytic"
 author: "CPT Nicholas Uhorchak"
 date: "`r Sys.Date()`"
 output: github_document

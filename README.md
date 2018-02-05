@@ -1,7 +1,10 @@
-Uhorchak Analytic proposal review 1
+Uhorchak Analytic
 ================
 CPT Nicholas Uhorchak
-2018-01-17
+2018-02-05
+
+<!-- Add build tab from TRAVIS CI to readme file-->
+[![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean) <!-- [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/tidyverse/dplyr?branch=master&svg=true)](https://ci.appveyor.com/project/tidyverse/dplyr) --> <!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/dplyr)](http://cran.r-project.org/package=dplyr) --> <!-- [![Coverage Status](https://codecov.io/gh/tidyverse/dplyr/branch/master/graph/badge.svg)](https://codecov.io/gh/tidyverse/dplyr?branch=master) -->
 
 Section 1 Basic Information
 ===========================
