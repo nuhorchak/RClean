@@ -81,7 +81,7 @@ None.
 
 ```{r echo=FALSE}
 
-features <- read_excel("features.xlsx")
+features <- read_excel("inst/features.xlsx")
 ```
 
 ```{r echo=FALSE, include=TRUE}
