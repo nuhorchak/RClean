@@ -1,24 +1,24 @@
 library(shiny)
 library(miniUI)
 library(ggplot2)
+library(DT)
 
-ggbrush <- function(data, xvar, yvar) {
+RCleaner <- function(data, ...) {
   
   ui <- miniPage(
-    gadgetTitleBar("Drag to select points"),
+    gadgetTitleBar("RClean - Interactive Data Cleaning"),
     miniContentPanel(
-      # The brush="brush" argument means we can listen for
-      # brush events on the plot using input$brush.
-      plotOutput("plot", height = "100%", brush = "brush")
+      DT::dataTableOutput("Main_table")
     )
   )
   
   server <- function(input, output, session) {
     
     # Render the plot
-    output$plot <- renderPlot({
+    #output$plot <- renderPlot({
       # Plot the data with x/y vars indicated by the caller.
-      ggplot(data, aes_string(xvar, yvar)) + geom_point()
+      #ggplot(data, aes_string(xvar, yvar)) + geom_point()
+    output$Main_table <- DT::renderDataTable({data
     })
     
     # Handle the Done button being pressed.
@@ -28,5 +28,5 @@ ggbrush <- function(data, xvar, yvar) {
     })
   }
   
-  runGadget(ui, server)
+  runGadget(ui, server, viewer = dialogViewer("RCleaner"))
 }
