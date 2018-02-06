@@ -12,6 +12,7 @@
 #' @examples #using example is a complete seperate document, use this
 #' \dontrun{ run_RClean(mtcars, "hp", "mpg")}
 #' 
+#' @importFrom shiny runGadget
 #' 
 #' @export
 run_RClean <- function(data, xvar, yvar){
