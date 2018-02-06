@@ -15,7 +15,7 @@ run_my_app(app_name, ...)
 a printed shiny app output
 }
 \description{
-Run as a shiny app
+Run test app as a shiny app
 }
 \examples{
 #using example is a complete seperate document, use this

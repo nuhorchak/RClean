@@ -3,15 +3,15 @@
 #'
 #' @description Run as a shiny gadget
 #' 
-#' @param app_name character string for the directory of this package
-#' @param ... additional options passed to shinyAppDir
+#' @param data dataset to use
+#' @param xvar x variable to plot
+#' @param yvar y variable to plot
 #' 
-#' @return a printed shiny app output
+#' @return a shiny gadget output
 #' 
 #' @examples #using example is a complete seperate document, use this
 #' \dontrun{ run_RClean(mtcars, "hp", "mpg")}
 #' 
-#' @importFrom shiny shinyAppDir
 #' 
 #' @export
 run_RClean <- function(data, xvar, yvar){
