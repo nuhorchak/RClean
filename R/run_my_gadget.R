@@ -12,10 +12,12 @@
 #' @examples #using example is a complete seperate document, use this
 #' \dontrun{ run_RClean(mtcars, "hp", "mpg")}
 #' 
-#' @importFrom shiny runGadget
+#' @importFrom shiny shiny_appdior
 #' 
 #' @export
-run_RClean <- function(data, xvar, yvar){
-  runGadget("inst/gadgets/RClean_gadget/ui.R", "inst/gadgets/RClean_gadget/server.R", stopOnCancel = TRUE)
+run_my_gadget <- function(app_name, data, xvar, yvar, ...){
+  app_dir <- system.file('gadgets', app_name, package='RClean')
+  
+  shiny::shinyAppDir(appDir=app_dir, options = list(...))
 }
 
