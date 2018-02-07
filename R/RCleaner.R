@@ -5,35 +5,53 @@
 #' @param data The data to be used
 #'
 #' @import shiny
+#' @import DT
+#' @import miniUI miniPage
+#' @importFrom shinythemes shinytheme
 #'
 #' @export
 RCleaner <- function(data, ...) {
 
-  ui <- miniPage(
+  ui <- miniUI::miniPage(
     gadgetTitleBar("RClean - Interactive Data Cleaning"),
     miniContentPanel(
       DT::dataTableOutput("Main_table")
-    )
+    ),
+    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"))
   )
 
   server <- function(input, output, session) {
 
-    output$Main_table <- DT::renderDataTable(data, server = TRUE
-    )
-    proxy <- DT::dataTableProxy('Main_table')
-    # if(input$Main_table_row_last_clicked = NULL){
-    #   print("No selection")} else {
-    #
-    #   }
-
-
+    #create dataframe to manipulate
+    values <- reactiveValues(dfWorking = data)
+    
+    #select rows to delete, unless no rows are selected 
+    observeEvent(input$deleteRows, {
+      if (!is.null(input$Main_table_rows_selected)) {
+        values$dfWorking <- values$dfWorking[-as.numeric(input$Main_table_rows_selected),]
+      }
+    })
+    
+    #functionality not working yet
+    #select cols to delete, unless no rows are selected 
+    observeEvent(input$deleteCols, {
+      if (!is.null(input$Main_table_columns_selected)) { 
+        values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
+      }
+    })
+    
+    output$Main_table <- DT::renderDataTable(values$dfWorking, 
+                                             server = TRUE, 
+                                             selection = list(target = 'row+column'))
 
     # Handle the Done button being pressed.
     observeEvent(input$done, {
       # Return the brushed points. See ?shiny::brushedPoints.
-      stopApp(input$Main_table_row_last_clicked)
+      stopApp(input$Main_table_rows_selected)
     })
   }
 
-  runGadget(ui, server, viewer = dialogViewer("RCleaner"))
+  shinygadgets::runGadget(ui, server, viewer = shinygadgets::dialogViewer("RCleaner"))
+  
+  #https://stackoverflow.com/questions/39136385/delete-row-of-dt-data-table-in-shiny-app
 }
