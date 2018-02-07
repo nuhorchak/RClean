@@ -15,7 +15,7 @@ Description: Utilizing R to import and clean data is often a time consuming task
         data, Provide the ability to encode nominal data to numerical data, Save the new data to a 
         "cleaned" dataframe, Write the "clean" DF to excel document for future use.
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.12.14), shiny
+Imports: Rcpp (>= 0.12.14), shiny, DT, miniUI, pacman, shinythemes
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1
 Suggests: testthat

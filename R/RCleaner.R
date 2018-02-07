@@ -6,11 +6,15 @@
 #'
 #' @import shiny
 #' @import DT
-#' @import miniUI miniPage
+#' @importFrom pacman p_load p_load_gh
+#' @import miniUI
 #' @importFrom shinythemes shinytheme
 #'
 #' @export
 RCleaner <- function(data, ...) {
+  
+  pacman::p_load(DT, shiny, miniUI)
+  pacman::p_load_gh("rstudio/shinygadgets")
 
   ui <- miniUI::miniPage(
     gadgetTitleBar("RClean - Interactive Data Cleaning"),
@@ -33,7 +37,7 @@ RCleaner <- function(data, ...) {
     })
     
     #functionality not working yet
-    #select cols to delete, unless no rows are selected 
+    #select cols to delete, unless no cols are selected 
     observeEvent(input$deleteCols, {
       if (!is.null(input$Main_table_columns_selected)) { 
         values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
@@ -46,8 +50,8 @@ RCleaner <- function(data, ...) {
 
     # Handle the Done button being pressed.
     observeEvent(input$done, {
-      # Return the brushed points. See ?shiny::brushedPoints.
-      stopApp(input$Main_table_rows_selected)
+      # Return the modified datatable...not working yet
+      stopApp(my_data <- values$dfWorking)
     })
   }
 
