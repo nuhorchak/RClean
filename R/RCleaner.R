@@ -51,7 +51,7 @@ RCleaner <- function(data, ...) {
     # Handle the Done button being pressed.
     observeEvent(input$done, {
       # Return the modified datatable...not working yet
-      stopApp(my_data <- values$dfWorking)
+    stopApp(my_data <<- data.frame(values$dfWorking))
     })
   }
 

@@ -2,9 +2,10 @@
 
 export(RCleaner)
 export(run_my_app)
+import(DT)
+import(miniUI)
+import(shiny)
 importFrom(Rcpp,evalCpp)
-importFrom(pacman,"#@import")
-importFrom(pacman,miniUI)
 importFrom(pacman,p_load)
 importFrom(pacman,p_load_gh)
 importFrom(shiny,shinyAppDir)
