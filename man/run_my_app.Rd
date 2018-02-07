@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_my_app.R
 \name{run_my_app}
 \alias{run_my_app}
-\title{RClean}
+\title{my first app}
 \usage{
 run_my_app(app_name, ...)
 }

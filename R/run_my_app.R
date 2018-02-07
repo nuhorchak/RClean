@@ -1,5 +1,5 @@
 
-#' @title RClean
+#' @title my first app
 #'
 #' @description Run test app as a shiny app
 #' 
