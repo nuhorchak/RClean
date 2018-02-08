@@ -13,7 +13,6 @@
 #' 
 #' @importFrom shiny shinyAppDir
 #' 
-#' @export
 run_my_app <- function(app_name, ...){
   app_dir <- system.file('apps', app_name, package='RClean')
   

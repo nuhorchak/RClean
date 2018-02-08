@@ -4,8 +4,8 @@
 #'
 #' @param data The data to be used
 #'
-#' @import shiny
 #' @import DT
+#' @import shiny
 #' @importFrom pacman p_load p_load_gh
 #' @import miniUI
 #' @importFrom shinythemes shinytheme
@@ -13,7 +13,7 @@
 #' @export
 RCleaner <- function(data, ...) {
   
-  pacman::p_load(DT, shiny, miniUI)
+  pacman::p_load(shiny, DT, miniUI)
   pacman::p_load_gh("rstudio/shinygadgets")
 
   ui <- miniUI::miniPage(
@@ -21,8 +21,7 @@ RCleaner <- function(data, ...) {
     miniContentPanel(
       DT::dataTableOutput("Main_table")
     ),
-    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols")),
-    theme = 'darkly'
+    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"))
   )
 
   server <- function(input, output, session) {
