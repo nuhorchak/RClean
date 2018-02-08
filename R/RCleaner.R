@@ -13,15 +13,18 @@
 #' @export
 RCleaner <- function(data, ...) {
   
+  #pacman function to load libraries
   pacman::p_load(shiny, DT, miniUI)
-  pacman::p_load_gh("rstudio/shinygadgets")
+  #pacman function to load from github
+  #pacman::p_load_gh("rstudio/shinygadgets")
 
   ui <- miniUI::miniPage(
     gadgetTitleBar("RClean - Interactive Data Cleaning"),
     miniContentPanel(
       DT::dataTableOutput("Main_table")
     ),
-    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"))
+    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"),
+                    actionButton("center", "Mean Center Column"), actionButton("scale", "Scale Columns"))
   )
 
   server <- function(input, output, session) {
@@ -29,6 +32,9 @@ RCleaner <- function(data, ...) {
     #create dataframe to manipulate
     values <- reactiveValues(dfWorking = data)
     
+    ######################################
+    #BOTTOM BUTTON LOGIC
+    ### DELETE ROWS ###
     #select rows to delete, unless no rows are selected 
     observeEvent(input$deleteRows, {
       if (!is.null(input$Main_table_rows_selected)) {
@@ -36,7 +42,7 @@ RCleaner <- function(data, ...) {
       }
     })
     
-    #functionality not working yet
+    ### DELETE COLS ###
     #select cols to delete, unless no cols are selected 
     observeEvent(input$deleteCols, {
       if (!is.null(input$Main_table_columns_selected)) { 
@@ -44,16 +50,33 @@ RCleaner <- function(data, ...) {
       }
     })
     
+    ### MEAN CENTER COLUMN ###
+    observeEvent(input$center, {
+      if (!is.null(input$Main_table_columns_selected)) { 
+        values$dfWorking[,c(input$Main_table_columns_selected)] <- 
+          scale(values$dfWorking[,c(input$Main_table_columns_selected)], scale=FALSE)
+      }
+    })
+    
+    ### SCALE COLUMNS ###
+    observeEvent(input$scale, {
+      if (!is.null(input$Main_table_columns_selected)) { 
+        values$dfWorking[,c(input$Main_table_columns_selected)] <- 
+          scale(values$dfWorking[,c(input$Main_table_columns_selected)], center=FALSE, scale=TRUE)
+      }
+    })
+    
     output$Main_table <- DT::renderDataTable(values$dfWorking, 
                                              server = TRUE, 
                                              selection = list(target = 'row+column'))
-
-    #BUTTON LOGIC
+    
+    ### TOP BUTTONS ###
     # Handle the Done button being pressed.
     observeEvent(input$done, {
-      # Return the modified datatable...not working yet
-    stopApp(clean_data <<- data.frame(values$dfWorking))
-    #stopApp(list(my_data = data.frame(values$dfWorking)))
+      # Return the modified datatable
+      #stopApp(input$Main_table_columns_selected)
+      stopApp(clean_data <<- data.frame(values$dfWorking))
+      #stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
     #cancel logic - for some reason it stopped working
