@@ -54,10 +54,10 @@ RCleaner <- function(data, ...) {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
         #is the pointer points to numeric columns
-        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected)], is.numeric)) {
+        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], is.numeric)) {
           #mean center values
           values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-            scale(values$dfWorking[,c(input$Main_table_columns_selected)], scale=FALSE)
+            scale(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], scale=FALSE)
         } else {print("column is not numeric")} #not numeric
       }else{print("No input selected")} #else pointer is null
     })
@@ -66,10 +66,10 @@ RCleaner <- function(data, ...) {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
         #is the pointer points to numeric columns
-        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected)], is.numeric)) {
+        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], is.numeric)) {
           #mean center values
           values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-            scale(values$dfWorking[,c(input$Main_table_columns_selected)], center=FALSE, scale=TRUE)
+            scale(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], center=FALSE, scale=TRUE)
         } else {print("column is not numeric")} #not numeric
       }else{print("No input selected")} #else pointer is null
     })
