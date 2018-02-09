@@ -4,7 +4,7 @@
 #'
 #' @param data The data to be used
 #'
-#' @import DT
+#' @importFrom DT DTOutput renderDT
 #' @import shiny
 #' @importFrom pacman p_load p_load_gh
 #' @import miniUI
@@ -21,7 +21,7 @@ RCleaner <- function(data, ...) {
   ui <- miniUI::miniPage(
     gadgetTitleBar("RClean - Interactive Data Cleaning"),
     miniContentPanel(
-      DT::dataTableOutput("Main_table")
+      DT::DTOutput("Main_table")
     ),
     miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"),
                     actionButton("center", "Mean Center Column"), actionButton("scale", "Scale Columns"))
@@ -74,7 +74,7 @@ RCleaner <- function(data, ...) {
       }else{print("No input selected")} #else pointer is null
     })
 
-    output$Main_table <- DT::renderDataTable(values$dfWorking, 
+    output$Main_table <- DT::renderDT(values$dfWorking, 
                                              server = TRUE, 
                                              selection = list(target = 'row+column'))
     
