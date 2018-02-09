@@ -39,7 +39,7 @@ RCleaner <- function(data, ...) {
     observeEvent(input$deleteRows, {
       if (!is.null(input$Main_table_rows_selected)) {
         values$dfWorking <- values$dfWorking[-as.numeric(input$Main_table_rows_selected),]
-      }
+      } else {print("No rows selected")}
     })
     
     ### DELETE COLS ###
@@ -47,25 +47,33 @@ RCleaner <- function(data, ...) {
     observeEvent(input$deleteCols, {
       if (!is.null(input$Main_table_columns_selected)) { 
         values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
-      }
+      } else {print("No columns selected")}
     })
     
-    ### MEAN CENTER COLUMN ###
     observeEvent(input$center, {
-      if (!is.null(input$Main_table_columns_selected)) { 
-        values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-          scale(values$dfWorking[,c(input$Main_table_columns_selected)], scale=FALSE)
-      }
+      #if pointer is not null
+      if (!is.null(input$Main_table_columns_selected)) {
+        #is the pointer points to numeric columns
+        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected)], is.numeric)) {
+          #mean center values
+          values$dfWorking[,c(input$Main_table_columns_selected)] <- 
+            scale(values$dfWorking[,c(input$Main_table_columns_selected)], scale=FALSE)
+        } else {print("column is not numeric")} #not numeric
+      }else{print("No input selected")} #else pointer is null
     })
     
-    ### SCALE COLUMNS ###
     observeEvent(input$scale, {
-      if (!is.null(input$Main_table_columns_selected)) { 
-        values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-          scale(values$dfWorking[,c(input$Main_table_columns_selected)], center=FALSE, scale=TRUE)
-      }
+      #if pointer is not null
+      if (!is.null(input$Main_table_columns_selected)) {
+        #is the pointer points to numeric columns
+        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected)], is.numeric)) {
+          #mean center values
+          values$dfWorking[,c(input$Main_table_columns_selected)] <- 
+            scale(values$dfWorking[,c(input$Main_table_columns_selected)], center=FALSE, scale=TRUE)
+        } else {print("column is not numeric")} #not numeric
+      }else{print("No input selected")} #else pointer is null
     })
-    
+
     output$Main_table <- DT::renderDataTable(values$dfWorking, 
                                              server = TRUE, 
                                              selection = list(target = 'row+column'))
@@ -74,8 +82,8 @@ RCleaner <- function(data, ...) {
     # Handle the Done button being pressed.
     observeEvent(input$done, {
       # Return the modified datatable
-      #stopApp(input$Main_table_columns_selected)
-      stopApp(clean_data <<- data.frame(values$dfWorking))
+      stopApp(indices <<- input$Main_table_columns_selected)
+      #stopApp(clean_data <<- data.frame(values$dfWorking))
       #stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
@@ -83,7 +91,6 @@ RCleaner <- function(data, ...) {
     observeEvent(input$cancel, {
       stopApp(print("User cancelled action"))
     })
-    
     
   }
 
