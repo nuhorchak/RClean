@@ -4,10 +4,12 @@
 \alias{RCleaner}
 \title{RClean gadget}
 \usage{
-RCleaner(data, ...)
+RCleaner(data, theme = "united", ...)
 }
 \arguments{
 \item{data}{The data to be used}
+
+\item{theme}{Shiny theme used for output}
 }
 \description{
 interactive data cleaning

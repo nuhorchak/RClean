@@ -1,3 +1,0 @@
-rescale <- function(df) {
-  #body
-}

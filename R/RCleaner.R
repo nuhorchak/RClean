@@ -3,6 +3,7 @@
 #' @description interactive data cleaning
 #'
 #' @param data The data to be used
+#' @param theme Shiny theme used for output
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
@@ -11,20 +12,39 @@
 #' @importFrom shinythemes shinytheme
 #'
 #' @export
-RCleaner <- function(data, ...) {
+RCleaner <- function(data, theme = 'united', ...) {
   
   #pacman function to load libraries
-  pacman::p_load(shiny, DT, miniUI)
-  #pacman function to load from github
-  #pacman::p_load_gh("rstudio/shinygadgets")
+  pacman::p_load(shiny, DT)
 
-  ui <- miniUI::miniPage(
-    gadgetTitleBar("RClean - Interactive Data Cleaning"),
-    miniContentPanel(
+  # ui <- miniUI::miniPage(
+  #   gadgetTitleBar("RClean - Interactive Data Cleaning"),
+  #   miniContentPanel(
+  #     DT::DTOutput("Main_table")
+  #   ),
+  #   miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"),
+  #                   actionButton("center", "Mean Center Column"), actionButton("scale", "Scale Columns"))
+  # )
+  
+  ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
+                  theme = shinythemes::shinytheme(theme = theme),
+    titlePanel("RClean - Interactive Data Cleaning"),
+    #create action buttons
+    flowLayout(
+      actionButton("deleteRows", "Delete Rows"),
+      actionButton("deleteCols", "Delete Columns"),
+      actionButton("center", "Mean Center Column"),
+      actionButton("scale", "Scale Columns")
+    ),
+    fluidRow(
       DT::DTOutput("Main_table")
     ),
-    miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"),
-                    actionButton("center", "Mean Center Column"), actionButton("scale", "Scale Columns"))
+    fluidRow(
+      column(width=1, offset=5,
+             actionButton("done", "Done")),
+      column(width=1, offset=0,
+             actionButton("cancel","Cancel"))
+    )
   )
 
   server <- function(input, output, session) {
@@ -34,7 +54,7 @@ RCleaner <- function(data, ...) {
     
     ######################################
     #BOTTOM BUTTON LOGIC
-    ### DELETE ROWS ###
+    ### DELETE ROWS ### needs to handle deleting all rows
     #select rows to delete, unless no rows are selected 
     observeEvent(input$deleteRows, {
       if (!is.null(input$Main_table_rows_selected)) {
@@ -45,7 +65,7 @@ RCleaner <- function(data, ...) {
     ### DELETE COLS ###
     #select cols to delete, unless no cols are selected 
     observeEvent(input$deleteCols, {
-      if (!is.null(input$Main_table_columns_selected)) { 
+      if (!is.null(input$Main_table_columns_selected)) {
         values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
       } else {print("No columns selected")}
     })
@@ -53,24 +73,18 @@ RCleaner <- function(data, ...) {
     observeEvent(input$center, {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
-        #is the pointer points to numeric columns
-        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], is.numeric)) {
-          #mean center values
-          values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-            scale(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], scale=FALSE)
-        } else {print("column is not numeric")} #not numeric
+        values$dfWorking <- 
+          center_scale(c(input$Main_table_columns_selected), 
+                       values$dfWorking, TRUE, FALSE)
       }else{print("No input selected")} #else pointer is null
     })
     
     observeEvent(input$scale, {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
-        #is the pointer points to numeric columns
-        if (sapply(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], is.numeric)) {
-          #mean center values
-          values$dfWorking[,c(input$Main_table_columns_selected)] <- 
-            scale(values$dfWorking[,c(input$Main_table_columns_selected), drop = FALSE], center=FALSE, scale=TRUE)
-        } else {print("column is not numeric")} #not numeric
+        values$dfWorking <- 
+          center_scale(c(input$Main_table_columns_selected), 
+                       values$dfWorking, FALSE, TRUE)
       }else{print("No input selected")} #else pointer is null
     })
 
@@ -82,8 +96,8 @@ RCleaner <- function(data, ...) {
     # Handle the Done button being pressed.
     observeEvent(input$done, {
       # Return the modified datatable
-      stopApp(indices <<- input$Main_table_columns_selected)
-      #stopApp(clean_data <<- data.frame(values$dfWorking))
+      #stopApp(indices <<- input$Main_table_columns_selected)
+      stopApp(clean_data <<- data.frame(values$dfWorking))
       #stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
@@ -94,7 +108,10 @@ RCleaner <- function(data, ...) {
     
   }
 
-  shinygadgets::runGadget(ui, server, viewer = shinygadgets::dialogViewer("RCleaner"))
+  #shinygadgets::runGadget(ui, server, viewer = shinygadgets::dialogViewer("RCleaner"))
+  runGadget(app = ui,
+            server = server,
+            viewer = browserViewer(browser = getOption("browser")))
   
   #code to select and remove rows was modified from the following:
   #https://stackoverflow.com/questions/39136385/delete-row-of-dt-data-table-in-shiny-app

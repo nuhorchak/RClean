@@ -1,7 +1,7 @@
 Uhorchak Analytic
 ================
 CPT Nicholas Uhorchak
-2018-02-05
+2018-02-12
 
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
@@ -125,7 +125,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Visual inspection of data</td>
 <td align="left">This feature will open the newly imported DF so the user can look at the data</td>
 <td align="right">1</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Quick and easy visual exploration of the dataset imported</td>
 <td align="left">N/A</td>
 <td align="left">Dataset output onto screen</td>
@@ -137,7 +137,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Select releveant data columns to retain/remove</td>
 <td align="left">Allow the user to select what columns to either retain or remove from the current data</td>
 <td align="right">2</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Easily remove unwanted variables from the dataset</td>
 <td align="left">N/A</td>
 <td align="left">Modified DF</td>
@@ -161,7 +161,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Select releveant data rows to retain/remove</td>
 <td align="left">Allow the user to select what rows to either retain or remove from the current data</td>
 <td align="right">3</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Easily remove unwanted rows from the dataset</td>
 <td align="left">N/A</td>
 <td align="left">Modified DF</td>
@@ -173,7 +173,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Scale Data</td>
 <td align="left">Allow the user to scale the data</td>
 <td align="right">5</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Scale the data for future use</td>
 <td align="left">N/A</td>
 <td align="left">Modified DF</td>
@@ -185,7 +185,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Mean center data</td>
 <td align="left">Allow the user to center the data</td>
 <td align="right">6</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Mean center the data for future use</td>
 <td align="left">N/A</td>
 <td align="left">Modified DF</td>
@@ -221,7 +221,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Save clean data</td>
 <td align="left">User can save the &quot;clean&quot; data to a new dataframe in R</td>
 <td align="right">4</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Cleaned data saved for analysis</td>
 <td align="left">new name for clean DF</td>
 <td align="left">Clean DF</td>
