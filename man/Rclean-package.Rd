@@ -3,32 +3,30 @@
 \alias{Rclean}
 \docType{package}
 \title{
-  A short title line describing what the package does
+  RClean, An Interactive Data Cleaning Tool Provides Users The Dynamic Ability To Import And Clean Data
 }
 \description{
-  A more detailed description of what the package does. A length
-  of about one to five lines is recommended.
+  This package attempts to replicate data cleaning functionality from Excel in R
 }
 \details{
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
+  Utilizing R to import and clean data is often a time consuming task.  
+        Without preparation of the dataset in excel or other software, R users must use scripts or 
+        command line R code for this task.  The Interactive Data Cleaning tool will afford users 
+        the ability to do the following: Import Data, Visually inspect the previously imported data, 
+        Select releveant data columns to retain/remove, Provide the ability to rename columns in the 
+        dataframe, Select relevant data rows to retain/remove, Provide the option to scale the data, 
+        Provide the option to mean center the data, Provide the ability to impute missing numerical 
+        data, Provide the ability to encode nominal data to numerical data, Save the new data to a 
+        "cleaned" dataframe, Write the "clean" DF to excel document for future use.
 }
 \author{
-Your Name, email optional.
+Nicholas Uhorchak
 
-Maintainer: Your Name <your@email.com>
+Maintainer: Nicholas Uhorchak <nuhorchak@gmail.com>
 }
-\references{
-  This optional section can contain literature or other references for
-  background information.
-}
-\keyword{ package }
-\seealso{
-  Optional links to other man pages
-}
+\keyword{ data cleaning }
 \examples{
   \dontrun{
-     ## Optional simple examples of the most important functions
-     ## These can be in \dontrun{} and \donttest{} blocks.   
+     \dontrun{RCleaner(iris)}  
   }
 }
