@@ -2,12 +2,10 @@
 
 export(RCleaner)
 export(center_scale)
-import(miniUI)
 import(shiny)
 importFrom(DT,DTOutput)
 importFrom(DT,renderDT)
 importFrom(Rcpp,evalCpp)
 importFrom(pacman,p_load)
-importFrom(pacman,p_load_gh)
 importFrom(shinythemes,shinytheme)
 useDynLib(RClean)

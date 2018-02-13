@@ -1,15 +1,14 @@
 #' @title RClean gadget
 #'
-#' @description interactive data cleaning
+#' @description Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
 #'
 #' @param data The data to be used - must be of type DF, tibble or matrix with 2 or more columns
-#' @param theme Shiny theme used for output
-#' @param ... additional arguments not specified
+#' @param theme Shiny theme used for output (default is united)
+#' @param ... additional arguments not specified_gh
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
-#' @importFrom pacman p_load p_load_gh
-#' @import miniUI
+#' @importFrom pacman p_load p_load
 #' @importFrom shinythemes shinytheme
 #'
 #' @export
@@ -18,14 +17,6 @@ RCleaner <- function(data, theme = 'united', ...) {
   #pacman function to load libraries
   pacman::p_load(shiny, DT)
 
-  # ui <- miniUI::miniPage(
-  #   gadgetTitleBar("RClean - Interactive Data Cleaning"),
-  #   miniContentPanel(
-  #     DT::DTOutput("Main_table")
-  #   ),
-  #   miniButtonBlock(actionButton("deleteRows", "Delete Rows"), actionButton("deleteCols", "Delete Cols"),
-  #                   actionButton("center", "Mean Center Column"), actionButton("scale", "Scale Columns"))
-  # )
   
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
@@ -55,7 +46,6 @@ RCleaner <- function(data, theme = 'united', ...) {
     
     ######################################
     #BOTTOM BUTTON LOGIC
-    ### DELETE ROWS ### needs to handle deleting all rows
     #select rows to delete, unless no rows are selected 
     observeEvent(input$deleteRows, {
       if (!is.null(input$Main_table_rows_selected)) {
@@ -97,19 +87,17 @@ RCleaner <- function(data, theme = 'united', ...) {
     # Handle the Done button being pressed.
     observeEvent(input$done, {
       # Return the modified datatable
-      #stopApp(indices <<- input$Main_table_columns_selected)
       stopApp(clean_data <<- data.frame(values$dfWorking))
       #stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
-    #cancel logic - for some reason it stopped working
+    #cancel logic 
     observeEvent(input$cancel, {
       stopApp(print("User cancelled action"))
     })
     
   }
 
-  #shinygadgets::runGadget(ui, server, viewer = shinygadgets::dialogViewer("RCleaner"))
   runGadget(app = ui,
             server = server,
             viewer = browserViewer(browser = getOption("browser")))

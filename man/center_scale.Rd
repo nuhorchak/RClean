@@ -16,5 +16,5 @@ center_scale(indices, DF, center, scale)
 \item{scale}{binary true/false for scale() function}
 }
 \description{
-center and scale function to handle non-numeric data
+center and scale function to handle non-numeric data. checks for numeric data, applies scale() from base R
 }
