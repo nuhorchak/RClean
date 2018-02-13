@@ -10,6 +10,8 @@ RCleaner(data, theme = "united", ...)
 \item{data}{The data to be used - must be of type DF, tibble or matrix with 2 or more columns}
 
 \item{theme}{Shiny theme used for output}
+
+\item{...}{additional arguments not specified}
 }
 \description{
 interactive data cleaning
