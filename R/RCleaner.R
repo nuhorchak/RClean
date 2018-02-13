@@ -4,6 +4,7 @@
 #'
 #' @param data The data to be used - must be of type DF, tibble or matrix with 2 or more columns
 #' @param theme Shiny theme used for output
+#' @param ... additional arguments not specified
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
