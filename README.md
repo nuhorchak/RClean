@@ -1,7 +1,7 @@
-Uhorchak Analytic
+RClean
 ================
-CPT Nicholas Uhorchak
-2018-02-12
+Nicholas Uhorchak
+2018-02-13
 
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
@@ -73,7 +73,7 @@ None at this point.
 1.6 Design constraints
 ----------------------
 
-None.
+Currently, the gadget only handles DF, matrix or tibble like objects with 2 or more columns. SIngle vectors are not handled.
 
 Section 2 Delivery and Schedule Information
 ===========================================

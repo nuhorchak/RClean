@@ -1,6 +1,6 @@
 ---
-title: "Uhorchak Analytic"
-author: "CPT Nicholas Uhorchak"
+title: "RClean"
+author: "Nicholas Uhorchak"
 date: "`r Sys.Date()`"
 output: github_document
 keep_md: yes
@@ -72,7 +72,7 @@ None at this point.
    
 ## 1.6 Design constraints
 
-None.
+Currently, the gadget only handles DF, matrix or tibble like objects with 2 or more columns.  SIngle vectors are not handled.
 
 # Section 2 Delivery and Schedule Information
 
