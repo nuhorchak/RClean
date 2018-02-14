@@ -22,37 +22,59 @@ RCleaner <- function(data, theme = 'united', ...) {
 
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
+                  includeCSS("inst/www/custom.css"),
                   useShinyjs(),
                   extendShinyjs(text = jscode, functions = c("closeWindow")),
                   
     titlePanel("RClean - Interactive Data Cleaning"),
-    #create action buttons
-    flowLayout(
-      actionButton("deleteRows", "Delete Rows"),
-      actionButton("deleteCols", "Delete Columns"),
-      actionButton("center", "Mean Center Column"),
-      actionButton("scale", "Scale Columns")
-    ),
-    fluidRow(
-      DT::DTOutput("Main_table")
-    ),
-    fluidRow(
-      column(width=1, offset=5,
-             actionButton("close", "Finish and Close")),
-      column(width=1, offset=1,
-             actionButton("cancel","Cancel"))
+    
+    #build main panel with two tabs, instructions and gadget
+    mainPanel(
+      tabsetPanel(type = 'pills',
+                  #instructions tab
+                  tabPanel('Instructions', uiOutput('instructions', inline = TRUE)),
+                  #gadget tab
+                  tabPanel('RCleaner Gadget',
+                    #create action buttons
+                    flowLayout(
+                      actionButton("deleteRows", "Delete Rows"),
+                      actionButton("deleteCols", "Delete Columns"),
+                      actionButton("center", "Mean Center Column"),
+                      actionButton("scale", "Scale Columns")
+                    ),
+                    #display data
+                    fluidRow(
+                      DT::DTOutput("Main_table")
+                    ),
+                    #display close and cancel buttons
+                    fluidRow(
+                      column(width=1, offset=5,
+                             actionButton("close", "Finish and Close")),
+                      column(width=1, offset=1,
+                             actionButton("cancel","Cancel"))
+                    )
+                  )
+      )
     )
   )
 
   server <- function(input, output, session) {
 
-    #create dataframe to manipulate
+    #create dataframe to manipulate with reactive values
     values <- reactiveValues(dfWorking = data)
+    
+    #instructions
+    output$instructions  <- renderUI({
+      
+      file = system.file('instructions.Rmd', package = "RClean")
+      withMathJax(HTML(markdown::markdownToHTML(knitr::knit(file))))
+    })
     
     ######################################
     #BOTTOM BUTTON LOGIC
     #select rows to delete, unless no rows are selected 
     observeEvent(input$deleteRows, {
+      #check to see if pointer is not null
       if (!is.null(input$Main_table_rows_selected)) {
         values$dfWorking <- values$dfWorking[-as.numeric(input$Main_table_rows_selected),]
       } else {print("No rows selected")}
@@ -61,6 +83,7 @@ RCleaner <- function(data, theme = 'united', ...) {
     ### DELETE COLS ###
     #select cols to delete, unless no cols are selected 
     observeEvent(input$deleteCols, {
+      #check to see if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
         values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
       } else {print("No columns selected")}
