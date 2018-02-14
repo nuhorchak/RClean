@@ -15,11 +15,16 @@
 RCleaner <- function(data, theme = 'united', ...) {
   
   #pacman function to load libraries
-  pacman::p_load(shiny, DT)
-
+  pacman::p_load(shiny, DT, shinyjs)
   
+  #close browser code
+  jscode <- "shinyjs.closeWindow = function() { window.close(); }"
+
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
+                  useShinyjs(),
+                  extendShinyjs(text = jscode, functions = c("closeWindow")),
+                  
     titlePanel("RClean - Interactive Data Cleaning"),
     #create action buttons
     flowLayout(
@@ -33,8 +38,8 @@ RCleaner <- function(data, theme = 'united', ...) {
     ),
     fluidRow(
       column(width=1, offset=5,
-             actionButton("done", "Done")),
-      column(width=1, offset=0,
+             actionButton("close", "Save and Close")),
+      column(width=1, offset=1,
              actionButton("cancel","Cancel"))
     )
   )
@@ -85,7 +90,8 @@ RCleaner <- function(data, theme = 'united', ...) {
     
     ### TOP BUTTONS ###
     # Handle the Done button being pressed.
-    observeEvent(input$done, {
+    observeEvent(input$close, {
+      js$closeWindow()
       # Return the modified datatable
       stopApp(clean_data <<- data.frame(values$dfWorking))
       #stopApp(list(my_data = data.frame(values$dfWorking)))
@@ -93,6 +99,7 @@ RCleaner <- function(data, theme = 'united', ...) {
     
     #cancel logic 
     observeEvent(input$cancel, {
+      js$closeWindow()
       stopApp(print("User cancelled action"))
     })
     
@@ -104,4 +111,7 @@ RCleaner <- function(data, theme = 'united', ...) {
   
   #code to select and remove rows was modified from the following:
   #https://stackoverflow.com/questions/39136385/delete-row-of-dt-data-table-in-shiny-app
+  
+  #code to close browser window modified from the following:
+  # https://deanattali.com/blog/advanced-shiny-tips/
 }
