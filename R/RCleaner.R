@@ -10,6 +10,7 @@
 #' @import shiny
 #' @importFrom pacman p_load p_load
 #' @importFrom shinythemes shinytheme
+#' @importFrom markdown markdownToHTML
 #'
 #' @export
 RCleaner <- function(data, theme = 'united', ...) {
