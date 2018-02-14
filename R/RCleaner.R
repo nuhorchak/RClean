@@ -114,4 +114,6 @@ RCleaner <- function(data, theme = 'united', ...) {
   
   #code to close browser window modified from the following:
   # https://deanattali.com/blog/advanced-shiny-tips/
+  
+  #mean impute - test on air miles dataset
 }
