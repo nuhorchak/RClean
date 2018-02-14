@@ -22,7 +22,7 @@ RCleaner <- function(data, theme = 'united', ...) {
 
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
-                  includeCSS('custom.css'),
+                  includeCSS('www/custom.css'),
                   useShinyjs(),
                   extendShinyjs(text = jscode, functions = c("closeWindow")),
                   
