@@ -26,6 +26,13 @@ RCleaner <- function(data, theme = 'united', ...) {
                   includeCSS('apps/www/custom.css'),
                   useShinyjs(),
                   extendShinyjs(text = jscode, functions = c("closeWindow")),
+                  tags$body(
+                    tags$style(HTML("
+                      body {
+                        max-width: none
+                      }
+                    "))
+                  ),
                   
     titlePanel("RClean - Interactive Data Cleaning"),
     
