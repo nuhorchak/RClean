@@ -38,7 +38,7 @@ RCleaner <- function(data, theme = 'united', ...) {
     ),
     fluidRow(
       column(width=1, offset=5,
-             actionButton("close", "Save and Close")),
+             actionButton("close", "Finish and Close")),
       column(width=1, offset=1,
              actionButton("cancel","Cancel"))
     )
@@ -113,7 +113,7 @@ RCleaner <- function(data, theme = 'united', ...) {
   #https://stackoverflow.com/questions/39136385/delete-row-of-dt-data-table-in-shiny-app
   
   #code to close browser window modified from the following:
-  # https://deanattali.com/blog/advanced-shiny-tips/
+  #https://deanattali.com/blog/advanced-shiny-tips/
   
   #mean impute - test on air miles dataset
 }
