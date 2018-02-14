@@ -93,8 +93,8 @@ RCleaner <- function(data, theme = 'united', ...) {
     observeEvent(input$close, {
       js$closeWindow()
       # Return the modified datatable
-      stopApp(clean_data <<- data.frame(values$dfWorking))
-      #stopApp(list(my_data = data.frame(values$dfWorking)))
+      #stopApp(clean_data <<- data.frame(values$dfWorking))
+      stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
     #cancel logic 
