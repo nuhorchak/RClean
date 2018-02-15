@@ -9,7 +9,7 @@ RCleaner(Data, theme = "united", ...)
 \arguments{
 \item{theme}{Shiny theme used for output (default is united)}
 
-\item{...}{additional arguments not specified_gh}
+\item{...}{additional arguments}
 
 \item{data}{The data to be used - must be of type DF, tibble or matrix with 2 or more columns}
 }

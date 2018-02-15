@@ -1,7 +1,7 @@
 RClean
 ================
 Nicholas Uhorchak
-2018-02-13
+2018-02-15
 
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
