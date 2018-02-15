@@ -7,7 +7,6 @@
 #' @param center binary true/false for scale() function
 #' @param scale binary true/false for scale() function
 #'
-#' @export
 center_scale <- function(indices, DF, center, scale){
   for (index in indices){
     if(is.numeric(DF[,index])){

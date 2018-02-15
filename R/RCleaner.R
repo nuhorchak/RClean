@@ -8,12 +8,12 @@
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
-#' @importFrom pacman p_load p_load
+#' @importFrom pacman p_load
 #' @importFrom shinythemes shinytheme
 #' @importFrom markdown markdownToHTML
 #'
 #' @export
-RCleaner <- function(data, theme = 'united', ...) {
+RCleaner <- function(Data, theme = 'united', ...) {
   
   #pacman function to load libraries
   pacman::p_load(shiny, DT, shinyjs)
@@ -39,27 +39,37 @@ RCleaner <- function(data, theme = 'united', ...) {
     mainPanel(
       tabsetPanel(type = 'pills',
                   #instructions tab
-                  tabPanel('Instructions', uiOutput('instructions', inline = TRUE)),
+                  tabPanel('Instructions', 
+                           uiOutput('instructions', inline = TRUE),
+                           actionButton("cancel_inst", "Cancel")),
                   #gadget tab
-                  tabPanel('RCleaner Gadget',
+                  tabPanel('Data Manipulation',
                     #create action buttons
-                    flowLayout(
                       actionButton("deleteRows", "Delete Rows"),
                       actionButton("deleteCols", "Delete Columns"),
                       actionButton("center", "Mean Center Column"),
-                      actionButton("scale", "Scale Columns")
-                    ),
+                      actionButton("scale", "Scale Columns"),
                     #display data
                     fluidRow(
                       DT::DTOutput("Main_table")
                     ),
                     #display close and cancel buttons
-                    fluidRow(
-                      column(width=1, offset=5,
-                             actionButton("close", "Finish and Close")),
-                      column(width=1, offset=1,
-                             actionButton("cancel","Cancel"))
-                    )
+                    actionButton("close", "Finish and Close"),
+                    actionButton("cancel","Cancel")
+                  ),
+                  tabPanel('Rename Columns',
+                           sidebarLayout(
+                             sidebarPanel(width = 3,
+                                          hr(),
+                                          selectInput("names", "Column Names",colnames(Data)),
+                                          textInput("new_name", "New Column Name"),
+                                          actionButton("save_name", "Save Name")),
+                             mainPanel(
+                               DT::DTOutput("Main_table_colnames")
+                             )
+                           ),
+                           actionButton("close_rename", "Finish and Close"),
+                           actionButton("cancel_rename","Cancel")
                   )
       )
     )
@@ -68,7 +78,7 @@ RCleaner <- function(data, theme = 'united', ...) {
   server <- function(input, output, session) {
 
     #create dataframe to manipulate with reactive values
-    values <- reactiveValues(dfWorking = data)
+    values <- reactiveValues(dfWorking = Data)
     
     #instructions
     output$instructions  <- renderUI({
@@ -78,7 +88,6 @@ RCleaner <- function(data, theme = 'united', ...) {
     })
     
     ######################################
-    #BOTTOM BUTTON LOGIC
     #select rows to delete, unless no rows are selected 
     observeEvent(input$deleteRows, {
       #check to see if pointer is not null
@@ -96,6 +105,7 @@ RCleaner <- function(data, theme = 'united', ...) {
       } else {print("No columns selected")}
     })
     
+    ## MEAN CENTER COLUMNS ##
     observeEvent(input$center, {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
@@ -105,6 +115,7 @@ RCleaner <- function(data, theme = 'united', ...) {
       }else{print("No input selected")} #else pointer is null
     })
     
+    ## SCALE COLUMNS ##
     observeEvent(input$scale, {
       #if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
@@ -113,25 +124,65 @@ RCleaner <- function(data, theme = 'united', ...) {
                        values$dfWorking, FALSE, TRUE)
       }else{print("No input selected")} #else pointer is null
     })
-
-    output$Main_table <- DT::renderDT(values$dfWorking, 
-                                             server = TRUE, 
-                                             selection = list(target = 'row+column'))
     
-    ### TOP BUTTONS ###
-    # Handle the Done button being pressed.
+    ## RENDER DT IN MANIPULATION TAB ##
+    output$Main_table <- DT::renderDT(values$dfWorking, 
+                                      server = TRUE, 
+                                      selection = list(target = 'row+column'))
+    ##################
+    ## RENAME TAB LOGIC ##
+    #dynamic update to variable names input for rename tab
+    observe(
+      updateSelectInput(session, "names",
+                        choices = colnames(values$dfWorking))
+    )
+    
+    ## RENDER DT IN RENAME TAB ##
+    output$Main_table_colnames <- DT::renderDT(values$dfWorking, 
+                                               server = TRUE)
+    
+    # Handle the save name button - rename columns
+    observeEvent(input$save_name, {
+      # Return the modified datatable with name change
+      if (input$new_name != ""){
+        colnames(values$dfWorking)[colnames(values$dfWorking) == input$names] <- input$new_name
+      } else (print("no variable name input"))
+    })
+    
+    ### FINISH/CANCEL BUTTONS ###
+    #cancel logic - instructions
+    observeEvent(input$cancel_inst, {
+      js$closeWindow()
+      stopApp(print("User cancelled action"))
+    })
+    
+    # Handle the Finish and close button being pressed. - manipulation
     observeEvent(input$close, {
       js$closeWindow()
       # Return the modified datatable
-      #stopApp(clean_data <<- data.frame(values$dfWorking))
       stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
-    #cancel logic 
+    #cancel logic - manipulation
     observeEvent(input$cancel, {
       js$closeWindow()
       stopApp(print("User cancelled action"))
     })
+    
+    #cancel logic - rename columns
+    observeEvent(input$cancel_rename, {
+      js$closeWindow()
+      stopApp(print("User cancelled action"))
+    })
+    
+    # Handle the Done button being pressed. - rename columns
+    observeEvent(input$close_rename, {
+      js$closeWindow()
+      # Return the modified datatable
+      stopApp(list(my_data = data.frame(values$dfWorking)))
+    })
+    
+
     
   }
 

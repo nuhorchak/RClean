@@ -4,7 +4,7 @@ output: html_document
 
 
 
-## R Markdown
+## RCleaner
 
 This document serves as a guide to utilizing the RCleaner gadget from the RClean package.
 
@@ -28,6 +28,6 @@ Instructions on the gadget itself
 - Cancel - closes the browser window, with no action taken on the data
 
 ## NOTES
-- NOTE: Search function will only filter data and does not apply the filter is Finish and close is clicked
+- NOTE: Search function will only filter data and does not apply the filter if Finish and close is clicked
 - NOTE: RCleaner gadget does not automatically save data to your working environment.  Assignment must be made prior to opening this gadget (i.e. my_data <- RCleaner(iris))
 
