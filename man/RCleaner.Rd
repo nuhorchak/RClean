@@ -13,6 +13,9 @@ RCleaner(Data, theme = "united", ...)
 
 \item{...}{additional arguments}
 }
+\value{
+modified DF with changes applied from gadget
+}
 \description{
 Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
 }

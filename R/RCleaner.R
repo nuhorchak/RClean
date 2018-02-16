@@ -5,6 +5,8 @@
 #' @param Data The data to be used - must be of type DF, tibble or matrix with 2 or more columns
 #' @param theme Shiny theme used for output (default is united)
 #' @param ... additional arguments
+#' 
+#' @return modified DF with changes applied from gadget
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny

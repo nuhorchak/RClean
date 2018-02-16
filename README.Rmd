@@ -56,23 +56,24 @@ Users that wish to utilize imputation on the dataset should have some knowledge 
 
 This analytic will utilize the following existing R packages:
 
-  - tidyverse
-  - mice
   - shiny
-  - lubridate
-  - readxl
+  - DT
+  - shinyjS
+  - shinythemes
+  - markdown
+
 
 ## 1.4 End user access
 
-End users will use the associated R package.
+End users will use the associated R package to call this gadget
    
 ## 1.5 Security concerns
 
-None at this point.
+None
    
 ## 1.6 Design constraints
 
-Currently, the gadget only handles DF, matrix or tibble like objects with 2 or more columns.  SIngle vectors are not handled.
+Currently, the gadget only handles DF, matrix or tibble like objects with 2 or more columns.  Single vectors are not handled.
 
 # Section 2 Delivery and Schedule Information
 
@@ -85,7 +86,7 @@ features <- read_excel("inst/features.xlsx")
 ```
 
 ```{r echo=FALSE, include=TRUE}
-kable(features, format = "markdown", booktabs = T)
+kable(features, format = "markdown", booktabs = T, padding = 0)
 
 ```
 
