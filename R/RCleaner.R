@@ -1,6 +1,6 @@
-#' @title RClean gadget
+#' RClean gadget
 #'
-#' @description Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
+#' Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
 #'
 #' @param Data The data to be used - must be of type DF, tibble or matrix with 2 or more columns
 #' @param theme Shiny theme used for output (default is united)

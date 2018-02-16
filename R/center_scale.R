@@ -1,6 +1,6 @@
-#' @title RClean center and scale
+#' RClean center and scale
 #'
-#' @description center and scale function to handle non-numeric data. checks for numeric data, applies scale() from base R
+#' center and scale function to handle non-numeric data. checks for numeric data, applies scale() from base R
 #'
 #' @param indices the indices from the shiny gadget
 #' @param DF the dataframe that is being worked on
