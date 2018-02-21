@@ -10,7 +10,7 @@
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
-#' @importFrom shinyjs useShinyjs extendShinyjs 
+#@import #shinyjs 
 #' @importFrom shinythemes shinytheme
 #' @importFrom markdown markdownToHTML
 #'
@@ -18,12 +18,12 @@
 RCleaner <- function(Data, theme = 'united', ...) {
   
   #close browser code
-  jscode <- "shinyjs.closeWindow = function() { window.close(); }"
+  #jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
-                 useShinyjs(),
-                 extendShinyjs(text = jscode, functions = c("closeWindow")),
+                 #shinyjs::useShinyjs(),
+                 #shinyjs::extendShinyjs(text = jscode, functions = c("closeWindow")),
                   tags$body(
                     tags$style(HTML("
                       body {
@@ -39,7 +39,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
       tabsetPanel(type = 'pills',
                   #instructions tab
                   tabPanel('Instructions', 
-                           uiOutput('inst/instructions', inline = TRUE),
+                           uiOutput('instructions', inline = TRUE),
                            actionButton("cancel_inst", "Cancel")),
                   #gadget tab
                   tabPanel('Data Manipulation',
@@ -151,32 +151,32 @@ RCleaner <- function(Data, theme = 'united', ...) {
     ### FINISH/CANCEL BUTTONS ###
     #cancel logic - instructions
     observeEvent(input$cancel_inst, {
-      js$closeWindow()
+      #js$closeWindow()
       stopApp(print("User cancelled action"))
     })
     
     # Handle the Finish and close button being pressed. - manipulation
     observeEvent(input$close, {
-      js$closeWindow()
+      #js$closeWindow()
       # Return the modified datatable
       stopApp(list(my_data = data.frame(values$dfWorking)))
     })
     
     #cancel logic - manipulation
     observeEvent(input$cancel, {
-      js$closeWindow()
+      #js$closeWindow()
       stopApp(print("User cancelled action"))
     })
     
     #cancel logic - rename columns
     observeEvent(input$cancel_rename, {
-      js$closeWindow()
+      #js$closeWindow()
       stopApp(print("User cancelled action"))
     })
     
     # Handle the Done button being pressed. - rename columns
     observeEvent(input$close_rename, {
-      js$closeWindow()
+      #js$closeWindow()
       # Return the modified datatable
       stopApp(list(my_data = data.frame(values$dfWorking)))
     })
