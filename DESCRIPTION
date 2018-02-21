@@ -18,10 +18,10 @@ License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.14),
          DT, 
          shiny,
-         pacman, 
          shinythemes, 
          stats,
-         markdown
+         markdown,
+         shinyjs
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1
 Suggests: testthat,

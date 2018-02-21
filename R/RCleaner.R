@@ -10,23 +10,22 @@
 #'
 #' @importFrom DT DTOutput renderDT
 #' @import shiny
-#' @importFrom pacman p_load
+#' @importFrom shinyjs useShinyjs extendShinyjs 
 #' @importFrom shinythemes shinytheme
 #' @importFrom markdown markdownToHTML
 #'
 #' @export
 RCleaner <- function(Data, theme = 'united', ...) {
   
-  #pacman function to load libraries
-  pacman::p_load(shiny, DT, shinyjs)
+  js <- NULL
   
   #close browser code
   jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),
-                  useShinyjs(),
-                  extendShinyjs(text = jscode, functions = c("closeWindow")),
+                 useShinyjs(),
+                 extendShinyjs(text = jscode, functions = c("closeWindow")),
                   tags$body(
                     tags$style(HTML("
                       body {
