@@ -39,7 +39,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
       tabsetPanel(type = 'pills',
                   #instructions tab
                   tabPanel('Instructions', 
-                           uiOutput('instructions', inline = TRUE),
+                           uiOutput('inst/instructions', inline = TRUE),
                            actionButton("cancel_inst", "Cancel")),
                   #gadget tab
                   tabPanel('Data Manipulation',
