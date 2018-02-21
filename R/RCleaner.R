@@ -17,8 +17,6 @@
 #' @export
 RCleaner <- function(Data, theme = 'united', ...) {
   
-  js <- NULL
-  
   #close browser code
   jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
