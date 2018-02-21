@@ -58,7 +58,6 @@ This analytic will utilize the following existing R packages:
 
   - shiny
   - DT
-  - shinyjS
   - shinythemes
   - markdown
 
