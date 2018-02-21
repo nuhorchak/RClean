@@ -1,10 +1,10 @@
 RClean
 ================
 Nicholas Uhorchak
-2018-02-16
+2018-02-21
 
 <!-- Add build tab from TRAVIS CI to readme file-->
-[![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
+[![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nuhorchak/RClean?branch=master&svg=true)](https://ci.appveyor.com/project/nuhorchak/RClean)
 
 Section 1 Basic Information
 ===========================
@@ -56,7 +56,6 @@ This analytic will utilize the following existing R packages:
 
 -   shiny
 -   DT
--   shinyjS
 -   shinythemes
 -   markdown
 
@@ -115,7 +114,7 @@ Section 2 Delivery and Schedule Information
 <td align="right">1</td>
 <td align="left">COMPLETE</td>
 <td align="left">Quick and easy visual exploration of the dataset imported</td>
-<td align="left">N/A</td>
+<td align="left">Some dataset</td>
 <td align="left">Dataset output onto screen</td>
 <td align="left">Visual exporation of data</td>
 <td align="left">Yes</td>
@@ -127,10 +126,58 @@ Section 2 Delivery and Schedule Information
 <td align="right">2</td>
 <td align="left">COMPLETE</td>
 <td align="left">Easily remove unwanted variables from the dataset</td>
-<td align="left">N/A</td>
+<td align="left">button click</td>
 <td align="left">Modified DF</td>
 <td align="left">Data cleaning</td>
 <td align="left">Yes</td>
+<td align="left">Current</td>
+</tr>
+<tr class="odd">
+<td align="left">Select releveant data rows to retain/remove</td>
+<td align="left">Allow the user to select what rows to either retain or remove from the current data</td>
+<td align="right">3</td>
+<td align="left">COMPLETE</td>
+<td align="left">Easily remove unwanted rows from the dataset</td>
+<td align="left">button click</td>
+<td align="left">Modified DF</td>
+<td align="left">Data cleaning</td>
+<td align="left">Yes</td>
+<td align="left">Current</td>
+</tr>
+<tr class="even">
+<td align="left">Save clean data</td>
+<td align="left">User can save the &quot;clean&quot; data to a new dataframe in R</td>
+<td align="right">4</td>
+<td align="left">COMPLETE</td>
+<td align="left">Cleaned data saved for analysis</td>
+<td align="left">new name for clean DF</td>
+<td align="left">Clean DF</td>
+<td align="left">Save cleaned DF for future use</td>
+<td align="left">Yes</td>
+<td align="left">Current</td>
+</tr>
+<tr class="odd">
+<td align="left">Scale Data</td>
+<td align="left">Allow the user to scale the data</td>
+<td align="right">5</td>
+<td align="left">COMPLETE</td>
+<td align="left">Scale the data for future use</td>
+<td align="left">button click</td>
+<td align="left">Modified DF</td>
+<td align="left">Data prep</td>
+<td align="left">No</td>
+<td align="left">Current</td>
+</tr>
+<tr class="even">
+<td align="left">Mean center data</td>
+<td align="left">Allow the user to center the data</td>
+<td align="right">6</td>
+<td align="left">COMPLETE</td>
+<td align="left">Mean center the data for future use</td>
+<td align="left">button click</td>
+<td align="left">Modified DF</td>
+<td align="left">Data prep</td>
+<td align="left">No</td>
 <td align="left">Current</td>
 </tr>
 <tr class="odd">
@@ -142,54 +189,6 @@ Section 2 Delivery and Schedule Information
 <td align="left">Column names if necessary</td>
 <td align="left">Modified DF</td>
 <td align="left">Data cleaning</td>
-<td align="left">No</td>
-<td align="left">Future</td>
-</tr>
-<tr class="even">
-<td align="left">Select releveant data rows to retain/remove</td>
-<td align="left">Allow the user to select what rows to either retain or remove from the current data</td>
-<td align="right">3</td>
-<td align="left">COMPLETE</td>
-<td align="left">Easily remove unwanted rows from the dataset</td>
-<td align="left">N/A</td>
-<td align="left">Modified DF</td>
-<td align="left">Data cleaning</td>
-<td align="left">Yes</td>
-<td align="left">Current</td>
-</tr>
-<tr class="odd">
-<td align="left">Scale Data</td>
-<td align="left">Allow the user to scale the data</td>
-<td align="right">5</td>
-<td align="left">COMPLETE</td>
-<td align="left">Scale the data for future use</td>
-<td align="left">N/A</td>
-<td align="left">Modified DF</td>
-<td align="left">Data prep</td>
-<td align="left">No</td>
-<td align="left">Future</td>
-</tr>
-<tr class="even">
-<td align="left">Mean center data</td>
-<td align="left">Allow the user to center the data</td>
-<td align="right">6</td>
-<td align="left">COMPLETE</td>
-<td align="left">Mean center the data for future use</td>
-<td align="left">N/A</td>
-<td align="left">Modified DF</td>
-<td align="left">Data prep</td>
-<td align="left">No</td>
-<td align="left">Future</td>
-</tr>
-<tr class="odd">
-<td align="left">Impute missing values</td>
-<td align="left">Allow the user to impute missing values</td>
-<td align="right">10</td>
-<td align="left">not started</td>
-<td align="left">NA</td>
-<td align="left">Method of imputation</td>
-<td align="left">Modified DF</td>
-<td align="left">Data prep</td>
 <td align="left">No</td>
 <td align="left">Future</td>
 </tr>
@@ -206,18 +205,6 @@ Section 2 Delivery and Schedule Information
 <td align="left">Future</td>
 </tr>
 <tr class="odd">
-<td align="left">Save clean data</td>
-<td align="left">User can save the &quot;clean&quot; data to a new dataframe in R</td>
-<td align="right">4</td>
-<td align="left">COMPLETE</td>
-<td align="left">Cleaned data saved for analysis</td>
-<td align="left">new name for clean DF</td>
-<td align="left">Clean DF</td>
-<td align="left">Save cleaned DF for future use</td>
-<td align="left">Yes</td>
-<td align="left">Current</td>
-</tr>
-<tr class="even">
 <td align="left">Write &quot;clean&quot; data to excel</td>
 <td align="left">Allow user to write the clean data to new excel file</td>
 <td align="right">9</td>
@@ -229,15 +216,27 @@ Section 2 Delivery and Schedule Information
 <td align="left">No</td>
 <td align="left">Future</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Modify DF cells</td>
 <td align="left">Allow users to click on a cell and change data values</td>
-<td align="right">11</td>
+<td align="right">10</td>
 <td align="left">not started</td>
 <td align="left">single cell value modification</td>
 <td align="left">N/A</td>
 <td align="left">modified DF</td>
 <td align="left">change cells</td>
+<td align="left">No</td>
+<td align="left">Future</td>
+</tr>
+<tr class="odd">
+<td align="left">Impute missing values</td>
+<td align="left">Allow the user to impute missing values</td>
+<td align="right">11</td>
+<td align="left">not started</td>
+<td align="left">NA</td>
+<td align="left">Method of imputation</td>
+<td align="left">Modified DF</td>
+<td align="left">Data prep</td>
 <td align="left">No</td>
 <td align="left">Future</td>
 </tr>

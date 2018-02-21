@@ -14,7 +14,7 @@ library(readxl)
 ```
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean)
-[![Build Status](https://ci.appveyor.com/project/nuhorchak/rclean.svg?branch=master)](https://ci.appveyor.com/project/nuhorchak/rclean)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nuhorchak/RClean?branch=master&svg=true)](https://ci.appveyor.com/project/nuhorchak/RClean)
 
 
 # Section 1 Basic Information
