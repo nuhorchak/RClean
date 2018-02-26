@@ -44,5 +44,4 @@ Data imported is visually displayed.  The following actions are available:
 ## NOTES
 - NOTE: Search function will only filter data and does not apply the filter if Finish and close is clicked
 - NOTE: RCleaner gadget does not automatically save data to your working environment.  Assignment must be made prior to opening this gadget (i.e. my_data <- RCleaner(iris))
-- NOTE: Renaming all variables to the same name works, but is not advised.
 

@@ -142,10 +142,13 @@ RCleaner <- function(Data, theme = 'united', ...) {
     
     # Handle the save name button - rename columns
     observeEvent(input$save_name, {
-      # Return the modified datatable with name change
-      if (input$new_name != ""){
+      if (input$new_name == ""){
+        print("No Variable Name Input")
+      }else if (input$new_name %in% colnames(values$dfWorking)){
+        print("Duplicate Variable Name")
+      }else {
         colnames(values$dfWorking)[colnames(values$dfWorking) == input$names] <- input$new_name
-      } else (print("no variable name input"))
+      }
     })
     
     ### FINISH/CANCEL BUTTONS ###

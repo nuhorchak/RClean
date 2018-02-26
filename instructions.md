@@ -25,8 +25,8 @@ Data imported is visually displayed.  The following actions are available:
 - Mean Center - mean center highlighted columns in the DF, where non-numeric data is ignored
 - Scale - scale highlight columns in the DF, where non-numeric data is ignored
 
-- Finish and close - closes the browser window and outputs the data to the console
-- Cancel - closes the browser window, with no action taken on the data
+- Finish and close - close session and output data to R console
+- Cancel - close session, with no action taken on the data
 
 ## Rename Columns Tab
 
@@ -36,11 +36,10 @@ Data imported is visually displayed.  The following actions are available:
  - Use the text input box to type in the new variable name
  - Save - save the text input into the text box as a new variable name
  
- - Finish and close - closes the browser window and outputs the data to the console
- - Cancel - closes the browser window, with no action taken on the data
+ - Finish and close - close session and output data to R console
+ - Cancel - close session, with no action taken on the data
 
 ## NOTES
 - NOTE: Search function will only filter data and does not apply the filter if Finish and close is clicked
 - NOTE: RCleaner gadget does not automatically save data to your working environment.  Assignment must be made prior to opening this gadget (i.e. my_data <- RCleaner(iris))
-- NOTE: Renaming all variables to the same name works, but is not advised.
 
