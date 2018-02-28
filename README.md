@@ -55,6 +55,7 @@ This analytic will utilize the following existing R packages:
 -   DT
 -   shinythemes
 -   markdown
+-   dummies
 
 1.4 End user access
 -------------------
@@ -190,11 +191,11 @@ Section 2 Delivery and Schedule Information
 <td align="left">Future</td>
 </tr>
 <tr class="even">
-<td align="left">Encode nominal to numerical</td>
+<td align="left">Create indicator variables</td>
 <td align="left">Allow the user to create &quot;dummy&quot; variables to represent nominal data</td>
 <td align="right">8</td>
-<td align="left">not started</td>
-<td align="left">NA</td>
+<td align="left">COMPLETE</td>
+<td align="left">Create indicator variables</td>
 <td align="left">Variables to encode</td>
 <td align="left">Modified DF</td>
 <td align="left">Data prep</td>

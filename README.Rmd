@@ -59,6 +59,7 @@ This analytic will utilize the following existing R packages:
   - DT
   - shinythemes
   - markdown
+  - dummies
 
 
 ## 1.4 End user access
