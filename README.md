@@ -17,7 +17,7 @@ RClean
 1.2 Title
 ---------
 
-RClean, an interactive data cleaning tool provides users the dynamic ability to import and clean data. At its core, it provides R users functionality similar to that of Microsoft Excel with regards to preparation of a dataset for analysis.
+RCleaner, an interactive data cleaning tool provides users the dynamic ability to import and clean data. At its core, it provides R users functionality similar to that of Microsoft Excel with regards to preparation of a dataset for analysis.
 
 1.3 Description
 ---------------
@@ -45,7 +45,9 @@ Users must be able to navigate R studio and understand how to use an R Gadget. I
 
 ### 1.3D Statistical methods utilized
 
-Version 1.0 allows users to apply mean centering and scaling to the data. The scale function from Base R is utilized. Centering is completed by subtracting the mean from each column value. Scaling is done by dividing each column value by its standard deviation (if centered) or by the root-mean-square (if not centered).
+-   Mean center data
+-   Scale Data
+-   Generate indicator variables
 
 ### 1.3E R Packages utilized
 
@@ -60,7 +62,7 @@ This analytic will utilize the following existing R packages:
 1.4 End user access
 -------------------
 
-End users will use the associated R package to call this gadget
+End users will call this gadget from the associated R package
 
 1.5 Security concerns
 ---------------------
