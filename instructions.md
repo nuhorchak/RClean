@@ -38,8 +38,23 @@ Data imported is visually displayed.  The following actions are available:
  
  - Finish and close - close session and output data to R console
  - Cancel - close session, with no action taken on the data
+ 
+## Encode Dummy Tab
+ 
+Allows a user to create dummy variables from a specified variable in the dataset
+
+  - Variable Drop Down allows users to select variable
+  - Encode Dummy creates a dummy variable with levels equal to the number of levels in the selected column
+  
+  - Finish and close - close session and output data to R console
+  - Cancel - close session, with no action taken on the data
+  
+## Restart Tab
+
+The sole function of this tab is to allow a user to re-initialize the gadget environment with a clean dataset.  Previous changes to the dataset ARE NOT SAVED.    
 
 ## NOTES
 - NOTE: Search function will only filter data and does not apply the filter if Finish and close is clicked
+- NOTE: You can encode any variable as dummy/indicator columns.  Use of this function requires understanding of indicator variables.
 - NOTE: RCleaner gadget does not automatically save data to your working environment.  Assignment must be made prior to opening this gadget (i.e. my_data <- RCleaner(iris))
 

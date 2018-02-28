@@ -83,7 +83,17 @@ RCleaner <- function(Data, theme = 'united', ...) {
                            ),
                            actionButton("close_dummy", "Finish and Close"),
                            actionButton("cancel_dummy","Cancel")
-                           #need to build serverside logic still
+                  ),
+                  tabPanel('RESET DATA',
+                           sidebarLayout(
+                             sidebarPanel(width = 3,
+                                          actionButton("reset", "Reset Data")),
+                             mainPanel(
+                               DT::DTOutput("Main_table_reset")
+                             )
+                           ),
+                           actionButton("close_reset", "Finish and Close"),
+                           actionButton("cancel_reset","Cancel")
                   )
       )
     )
@@ -115,7 +125,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
     observeEvent(input$deleteCols, {
       #check to see if pointer is not null
       if (!is.null(input$Main_table_columns_selected)) {
-        values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected)]
+        values$dfWorking <- values$dfWorking[,-as.numeric(input$Main_table_columns_selected), drop = FALSE]
       } else {print("No columns selected")}
     })
     
@@ -170,7 +180,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
     ## DUMMY TAB LOGIC ##
     #dynamic update to variable names input for rename tab
     observe(
-      updateSelectInput(session, "names",
+      updateSelectInput(session, "dummy_names",
                         choices = colnames(values$dfWorking))
     )
     
@@ -180,9 +190,19 @@ RCleaner <- function(Data, theme = 'united', ...) {
     
     # Handle the make dummy button - dummies tab
     observeEvent(input$make_dummy, { 
-      new_vars <- as.data.frame(dummy(input$dummy_names, values$dfWorking, sep = "_"))
-      my_data <- subset(values$dfWorking, select = -c(input$dummy_names))
-      values$dfWorking <- cbind(my_data, new_vars)
+      values$dfWorking <- dummy.data.frame(values$dfWorking, names = input$dummy_names)
+    })
+    
+    ##################
+    ## RESET TAB LOGIC ##
+    
+    ## RENDER DT IN reset TAB ##
+    output$Main_table_reset <- DT::renderDT(values$dfWorking, 
+                                              server = TRUE)
+    
+    # Handle the reset button
+    observeEvent(input$reset, { 
+      values$dfWorking <- Data
     })
     
     ### FINISH/CANCEL BUTTONS ###
@@ -217,6 +237,12 @@ RCleaner <- function(Data, theme = 'united', ...) {
       stopApp(print("User cancelled action"))
     })
     
+    #cancel logic - reset
+    observeEvent(input$cancel_reset, {
+      #js$closeWindow()
+      stopApp(print("User cancelled action"))
+    })
+    
     # Handle the Done button being pressed. - rename columns
     observeEvent(input$close_rename, {
       #js$closeWindow()
@@ -226,6 +252,13 @@ RCleaner <- function(Data, theme = 'united', ...) {
     
     # Handle the Done button being pressed. - encode dummies
     observeEvent(input$close_dummy, {
+      #js$closeWindow()
+      # Return the modified datatable
+      stopApp(list(my_data = data.frame(values$dfWorking)))
+    })
+    
+    # Handle the Done button being pressed. - reset
+    observeEvent(input$close_reset, {
       #js$closeWindow()
       # Return the modified datatable
       stopApp(list(my_data = data.frame(values$dfWorking)))
