@@ -1,7 +1,7 @@
 RClean
 ================
 Nicholas Uhorchak
-2018-02-21
+2018-02-28
 
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nuhorchak/RClean?branch=master&svg=true)](https://ci.appveyor.com/project/nuhorchak/RClean)
@@ -26,17 +26,14 @@ RClean, an interactive data cleaning tool provides users the dynamic ability to 
 
 Utilizing R to import and clean data is often a time consuming task. Without preparation of the dataset in excel or other software, R users must use scripts or command line R code for this task. The Interactive Data Cleaning tool will afford users the ability to do the following:
 
--   Import Data
--   Visually inspect the previously imported data
--   Select releveant data columns to retain/remove
+-   Initialize RCleaner gadget with a dataset
+-   Visually inspect the dataset called into the gadget
+-   Select data columns to remove
+-   Select data rows to remove
 -   Provide the ability to rename columns in the dataframe
--   Select relevant data rows to retain/remove
 -   Provide the option to scale the data.
 -   Provide the option to mean center the data
--   Provide the ability to impute missing numerical data
 -   Provide the ability to encode nominal data to numerical data
--   Save the new data to a "cleaned" dataframe
--   Write the "clean" DF to excel document for future use
 
 ### 1.3B End users
 
@@ -44,11 +41,11 @@ This analytic is being developed for those users in need of hasty data cleaning 
 
 ### 1.3C Required knowledge/skills
 
-Users must be able to navigate R studio and basic computer file structure. In addition, they should be aware of the types of data contained in the dataset to be analyzed, whether numerical or categorical, such that they are aware of the application of some functions of this analytic tool. Similarly, they should be aware of the statistica implication of imputation on a dataset and that imputation of large amounts of missing data can potentially skew analytical results.
+Users must be able to navigate R studio and understand how to use an R Gadget. In addition, they should be aware of the types of data contained in the dataset to be analyzed, whether numerical or categorical, such that they are aware of the application of some functions of this analytic tool.
 
 ### 1.3D Statistical methods utilized
 
-Users that wish to utilize imputation on the dataset should have some knowledge of the methods applied to the data. If in fact, large amounts of data are missing, they should be aware that simple mean imputation might not be the best answer and advanced imputation techniques should be utilized.
+Version 1.0 allows users to apply mean centering and scaling to the data. The scale function from Base R is utilized. Centering is completed by subtracting the mean from each column value. Scaling is done by dividing each column value by its standard deviation (if centered) or by the root-mean-square (if not centered).
 
 ### 1.3E R Packages utilized
 

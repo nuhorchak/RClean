@@ -13,6 +13,7 @@
 #@import #shinyjs 
 #' @importFrom shinythemes shinytheme
 #' @importFrom markdown markdownToHTML
+#' @import dummies
 #'
 #' @export
 RCleaner <- function(Data, theme = 'united', ...) {
@@ -34,7 +35,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
                   
     titlePanel("RClean - Interactive Data Cleaning"),
     
-    #build main panel with two tabs, instructions and gadget
+    #build main panel with tabs: instructions, manipulation, rename cols, encome dummy
     mainPanel(
       tabsetPanel(type = 'pills',
                   #instructions tab
@@ -69,6 +70,20 @@ RCleaner <- function(Data, theme = 'united', ...) {
                            ),
                            actionButton("close_rename", "Finish and Close"),
                            actionButton("cancel_rename","Cancel")
+                  ),
+                  tabPanel('Encode Dummy',
+                           sidebarLayout(
+                             sidebarPanel(width = 3,
+                                          hr(),
+                                          selectInput("dummy_names", "Column Names",colnames(Data)),
+                                          actionButton("make_dummy", "Encode Dummy")),
+                             mainPanel(
+                               DT::DTOutput("Main_table_dummies")
+                             )
+                           ),
+                           actionButton("close_dummy", "Finish and Close"),
+                           actionButton("cancel_dummy","Cancel")
+                           #need to build serverside logic still
                   )
       )
     )
@@ -151,6 +166,25 @@ RCleaner <- function(Data, theme = 'united', ...) {
       }
     })
     
+    ##################
+    ## DUMMY TAB LOGIC ##
+    #dynamic update to variable names input for rename tab
+    observe(
+      updateSelectInput(session, "names",
+                        choices = colnames(values$dfWorking))
+    )
+    
+    ## RENDER DT IN DUMMY TAB ##
+    output$Main_table_dummies <- DT::renderDT(values$dfWorking, 
+                                               server = TRUE)
+    
+    # Handle the make dummy button - dummies tab
+    observeEvent(input$make_dummy, { 
+      new_vars <- as.data.frame(dummy(input$dummy_names, values$dfWorking, sep = "_"))
+      my_data <- subset(values$dfWorking, select = -c(input$dummy_names))
+      values$dfWorking <- cbind(my_data, new_vars)
+    })
+    
     ### FINISH/CANCEL BUTTONS ###
     #cancel logic - instructions
     observeEvent(input$cancel_inst, {
@@ -177,8 +211,21 @@ RCleaner <- function(Data, theme = 'united', ...) {
       stopApp(print("User cancelled action"))
     })
     
+    #cancel logic - encode dummies
+    observeEvent(input$cancel_dummy, {
+      #js$closeWindow()
+      stopApp(print("User cancelled action"))
+    })
+    
     # Handle the Done button being pressed. - rename columns
     observeEvent(input$close_rename, {
+      #js$closeWindow()
+      # Return the modified datatable
+      stopApp(list(my_data = data.frame(values$dfWorking)))
+    })
+    
+    # Handle the Done button being pressed. - encode dummies
+    observeEvent(input$close_dummy, {
       #js$closeWindow()
       # Return the modified datatable
       stopApp(list(my_data = data.frame(values$dfWorking)))
