@@ -51,7 +51,7 @@ Allows a user to create dummy variables from a specified variable in the dataset
   - Finish and close - close session and output data to R console
   - Cancel - close session, with no action taken on the data
   
-## Restart Tab
+## Reset Tab
 
 The sole function of this tab is to allow a user to re-initialize the gadget environment with a clean dataset.  Previous changes to the dataset ARE NOT SAVED.    
 

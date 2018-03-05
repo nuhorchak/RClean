@@ -153,6 +153,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
     output$Main_table <- DT::renderDT(values$dfWorking, 
                                       server = TRUE, 
                                       selection = list(target = 'row+column'))
+                                      #list(mode = "single", target = "cell")) - see webpage for dynamic cell editing
     ##################
     ## RENAME TAB LOGIC ##
     #dynamic update to variable names input for rename tab
