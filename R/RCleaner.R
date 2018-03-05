@@ -191,7 +191,7 @@ RCleaner <- function(Data, theme = 'united', ...) {
     
     # Handle the make dummy button - dummies tab
     observeEvent(input$make_dummy, { 
-      values$dfWorking <- dummy.data.frame(values$dfWorking, names = input$dummy_names)
+      values$dfWorking <- dummy.data.frame(values$dfWorking, names = input$dummy_names, sep = "_")
     })
     
     ##################
