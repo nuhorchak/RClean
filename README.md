@@ -1,7 +1,7 @@
 RClean
 ================
 Nicholas Uhorchak
-2018-02-28
+2018-03-05
 
 <!-- Add build tab from TRAVIS CI to readme file-->
 [![Build Status](https://travis-ci.org/nuhorchak/RClean.svg?branch=master)](https://travis-ci.org/nuhorchak/RClean) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nuhorchak/RClean?branch=master&svg=true)](https://ci.appveyor.com/project/nuhorchak/RClean)
@@ -208,7 +208,7 @@ Section 2 Delivery and Schedule Information
 <td align="left">Write &quot;clean&quot; data to excel</td>
 <td align="left">Allow user to write the clean data to new excel file</td>
 <td align="right">9</td>
-<td align="left">not started</td>
+<td align="left">COMPLETE</td>
 <td align="left">Clean data is saved into external file for future use</td>
 <td align="left">file location</td>
 <td align="left">excel document</td>

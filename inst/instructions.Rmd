@@ -10,13 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This document serves as a guide to utilizing the RCleaner gadget from the RClean package.
 
-## Using RCleaner
-
-The following Tabs and operations are presented in RCleaner:
-
 ## Instructions Tab
 
 Instructions on the gadget itself
+
+Every Tab can either finish and close or cancel all actions using buttons at the bottom of the screen
+
+ - Finish and close - close session and output data to R console
+ - Cancel - close session, with no action taken on the data
 
 ## Data Manipulation Tab
 
@@ -27,9 +28,6 @@ Data imported is visually displayed.  The following actions are available:
 - Mean Center - mean center highlighted columns in the DF, where non-numeric data is ignored
 - Scale - scale highlight columns in the DF, where non-numeric data is ignored
 
-- Finish and close - close session and output data to R console
-- Cancel - close session, with no action taken on the data
-
 ## Rename Columns Tab
 
 Data imported is visually displayed.  The following actions are available:
@@ -38,9 +36,6 @@ Data imported is visually displayed.  The following actions are available:
  - Use the text input box to type in the new variable name
  - Save - save the text input into the text box as a new variable name
  
- - Finish and close - close session and output data to R console
- - Cancel - close session, with no action taken on the data
- 
 ## Encode Dummy Tab
  
 Allows a user to create dummy variables from a specified variable in the dataset
@@ -48,8 +43,11 @@ Allows a user to create dummy variables from a specified variable in the dataset
   - Variable Drop Down allows users to select variable
   - Encode Dummy creates a dummy variable with levels equal to the number of levels in the selected column
   
-  - Finish and close - close session and output data to R console
-  - Cancel - close session, with no action taken on the data
+## Download/Save Tab
+
+This tab allows users to download (open in excel) or save the current working dataframe displayed on the screen.  
+
+  - Download - presents browser options to open or save existing data.  
   
 ## Reset Tab
 

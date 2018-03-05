@@ -14,6 +14,7 @@
 #' @importFrom shinythemes shinytheme
 #' @importFrom markdown markdownToHTML
 #' @import dummies
+#' @importFrom utils write.csv
 #'
 #' @export
 RCleaner <- function(Data, theme = 'united', ...) {
@@ -38,10 +39,11 @@ RCleaner <- function(Data, theme = 'united', ...) {
     #build main panel with tabs: instructions, manipulation, rename cols, encome dummy
     mainPanel(
       tabsetPanel(type = 'pills',
+                  ############
                   #instructions tab
                   tabPanel('Instructions', 
-                           uiOutput('instructions', inline = TRUE),
-                           actionButton("cancel_inst", "Cancel")),
+                           uiOutput('instructions', inline = TRUE)),
+                  #############
                   #gadget tab
                   tabPanel('Data Manipulation',
                     #create action buttons
@@ -52,11 +54,10 @@ RCleaner <- function(Data, theme = 'united', ...) {
                     #display data
                     fluidRow(
                       DT::DTOutput("Main_table")
-                    ),
-                    #display close and cancel buttons
-                    actionButton("close", "Finish and Close"),
-                    actionButton("cancel","Cancel")
+                    )
                   ),
+                  ###################
+                  #rename columns tab
                   tabPanel('Rename Columns',
                            sidebarLayout(
                              sidebarPanel(width = 3,
@@ -67,10 +68,10 @@ RCleaner <- function(Data, theme = 'united', ...) {
                              mainPanel(
                                DT::DTOutput("Main_table_colnames")
                              )
-                           ),
-                           actionButton("close_rename", "Finish and Close"),
-                           actionButton("cancel_rename","Cancel")
+                           )
                   ),
+                  #################
+                  #encode dummy tab
                   tabPanel('Encode Dummy',
                            sidebarLayout(
                              sidebarPanel(width = 3,
@@ -80,10 +81,21 @@ RCleaner <- function(Data, theme = 'united', ...) {
                              mainPanel(
                                DT::DTOutput("Main_table_dummies")
                              )
-                           ),
-                           actionButton("close_dummy", "Finish and Close"),
-                           actionButton("cancel_dummy","Cancel")
+                           )
                   ),
+                  ################
+                  #save data tab
+                  tabPanel('Download/Save Data',
+                           sidebarLayout(
+                             sidebarPanel(width = 3,
+                                          downloadButton("downloadData", "Download Data")),
+                             mainPanel(
+                               DT::DTOutput("Main_table_save")
+                             )
+                           )
+                  ),
+                  ################
+                  #reset data tab
                   tabPanel('RESET DATA',
                            sidebarLayout(
                              sidebarPanel(width = 3,
@@ -91,11 +103,12 @@ RCleaner <- function(Data, theme = 'united', ...) {
                              mainPanel(
                                DT::DTOutput("Main_table_reset")
                              )
-                           ),
-                           actionButton("close_reset", "Finish and Close"),
-                           actionButton("cancel_reset","Cancel")
+                           )
                   )
-      )
+      ),
+      ################
+      actionButton("close","Finish and Close"),
+      actionButton("cancel", "Cancel")
     )
   )
 
@@ -195,6 +208,20 @@ RCleaner <- function(Data, theme = 'united', ...) {
     })
     
     ##################
+    ## SAVE LOGIC ##
+    ## RENDER DT IN DUMMY TAB ##
+    output$Main_table_save <- DT::renderDT(values$dfWorking, 
+                                              server = TRUE)
+    
+    #save data logic
+    output$downloadData <- downloadHandler(
+      filename = "clean_data.csv",
+      content = function(file) {
+        write.csv(values$dfWorking, file, row.names = FALSE)
+      }
+    )
+    
+    ##################
     ## RESET TAB LOGIC ##
     
     ## RENDER DT IN reset TAB ##
@@ -206,67 +233,20 @@ RCleaner <- function(Data, theme = 'united', ...) {
       values$dfWorking <- Data
     })
     
+    #######################
     ### FINISH/CANCEL BUTTONS ###
-    #cancel logic - instructions
-    observeEvent(input$cancel_inst, {
-      #js$closeWindow()
-      stopApp(print("User cancelled action"))
-    })
-    
-    # Handle the Finish and close button being pressed. - manipulation
-    observeEvent(input$close, {
-      #js$closeWindow()
-      # Return the modified datatable
-      stopApp(list(my_data = data.frame(values$dfWorking)))
-    })
-    
-    #cancel logic - manipulation
+    #cancel button 
     observeEvent(input$cancel, {
       #js$closeWindow()
       stopApp(print("User cancelled action"))
     })
     
-    #cancel logic - rename columns
-    observeEvent(input$cancel_rename, {
-      #js$closeWindow()
-      stopApp(print("User cancelled action"))
-    })
-    
-    #cancel logic - encode dummies
-    observeEvent(input$cancel_dummy, {
-      #js$closeWindow()
-      stopApp(print("User cancelled action"))
-    })
-    
-    #cancel logic - reset
-    observeEvent(input$cancel_reset, {
-      #js$closeWindow()
-      stopApp(print("User cancelled action"))
-    })
-    
-    # Handle the Done button being pressed. - rename columns
-    observeEvent(input$close_rename, {
+    # Finish and close button .
+    observeEvent(input$close, {
       #js$closeWindow()
       # Return the modified datatable
       stopApp(list(my_data = data.frame(values$dfWorking)))
     })
-    
-    # Handle the Done button being pressed. - encode dummies
-    observeEvent(input$close_dummy, {
-      #js$closeWindow()
-      # Return the modified datatable
-      stopApp(list(my_data = data.frame(values$dfWorking)))
-    })
-    
-    # Handle the Done button being pressed. - reset
-    observeEvent(input$close_reset, {
-      #js$closeWindow()
-      # Return the modified datatable
-      stopApp(list(my_data = data.frame(values$dfWorking)))
-    })
-    
-
-    
   }
 
   runGadget(app = ui,
@@ -279,5 +259,4 @@ RCleaner <- function(Data, theme = 'united', ...) {
   #code to close browser window modified from the following:
   #https://deanattali.com/blog/advanced-shiny-tips/
   
-  #mean impute - test on air miles dataset
 }
