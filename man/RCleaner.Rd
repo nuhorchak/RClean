@@ -7,15 +7,15 @@
 RCleaner(Data, theme = "united", ...)
 }
 \arguments{
-\item{Data}{The data to be used - must be of type DF, tibble or matrix with 2 or more columns}
+\item{Data}{The data to be used - must be of type DF or matrix with 2 or more columns}
 
 \item{theme}{Shiny theme used for output (default is united)}
 
-\item{...}{additional arguments}
+\item{...}{Additional arguments}
 }
 \value{
 modified DF with changes applied from gadget
 }
 \description{
-Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
+Interactive data cleaning.  This gadget initializes a DF or matrix in a browser window for data cleaning.
 }

@@ -1,10 +1,11 @@
 #' RClean gadget
 #'
-#' Interactive data cleaning.  This gadget initializes a DF, matrix or tibble in a browser window for data cleaning.
+#' Interactive data cleaning.  This gadget initializes a DF or matrix in a browser window for data cleaning.
+#' 
 #'
-#' @param Data The data to be used - must be of type DF, tibble or matrix with 2 or more columns
+#' @param Data The data to be used - must be of type DF or matrix with 2 or more columns
 #' @param theme Shiny theme used for output (default is united)
-#' @param ... additional arguments
+#' @param ... Additional arguments
 #' 
 #' @return modified DF with changes applied from gadget
 #'
@@ -21,6 +22,13 @@ RCleaner <- function(Data, theme = 'united', ...) {
   
   #close browser code
   #jscode <- "shinyjs.closeWindow = function() { window.close(); }"
+  if(missing(Data)){
+    stop("default argument Data missing with no default")
+  }
+  
+  if (!class(Data) %in% c("matrix", "data.frame")){
+    stop("User input not data.frame or matrix object")
+  }
 
   ui <- fluidPage(title = "RClean - Interactive Data Cleaning",
                   theme = shinythemes::shinytheme(theme = theme),

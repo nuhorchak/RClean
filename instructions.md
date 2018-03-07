@@ -26,6 +26,8 @@ Data imported is visually displayed.  The following actions are available:
 - Mean Center - mean center highlighted columns in the DF, where non-numeric data is ignored
 - Scale - scale highlight columns in the DF, where non-numeric data is ignored
 
+-NOTE: To highlight a column, click the variable name at the bottom of the data
+
 ## Rename Columns Tab
 
 Data imported is visually displayed.  The following actions are available:
