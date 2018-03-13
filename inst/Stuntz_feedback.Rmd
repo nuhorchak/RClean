@@ -1,0 +1,37 @@
+---
+title: "Stuntz Feedback - RClean"
+author: "Sean Stuntz"
+date: "March 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RClean Feedback
+
+Going to break up my feedback into sections based on the tabs.
+
+### Instructions
+Instructions seem very helpful and clarify the opportunities for user input. Testing Cancel button on this tab. After clicking Cancel button the screen greys but the user can still select tabs and manipulate the data table. Is this supposed to close the browser as well as the session? Testing Finish button. Same phenomena as before although i do see the data table printed in my console. Window and browser remain greyed out. 
+
+## Data Manipulation
+Buttons function properly. Manipulated data table appears in my console once a session is ended. Still have same issue mentioned above where the browser isn't closing and I'm still able to manipulate the tabs and objects. It would be a bit more convenient if a user were able to batch select rows to delete which meet user specified criteria. For instance if Sepal.Width < x then delete instead of having to identify them in the table. The serach box, while useful in terms of isolating a categorical input, isn't the best solution because if I'm just importing the data into R I can't tell what the levels of flower species are. Could address this with a data table output under or next to the main panel identifying levels in a selected variable.
+
+## Rename Columns
+A handy function! When I input a new column name and click Save Name, the name I entered remains and the Column Names reverts back to the first name. The script correctly does not allow you to assign two columns the same name. What is the purpose of the search bar here if i cannot search for column names?
+
+## Encode Dummy Variable
+This is useful! Although i assigned a dummy variable to a continuous variable then clicked reset data and the dummy variables remained? If I mess up this step is there another way for me to correct the issue? If not, do I just have to reload the app?
+
+## Download/Save Data
+I was able to successfully download the .csv file and view it afterwards. Is there a reason I'm viewing the data table if there's no way to modify it on this tab? Seems like you could just add the download and save button on another (or each) tab. 
+
+## Reset Data
+Again, not able to reset the data after assigning dummy variable to continuous variable. Also, I just closed the app by clicking the 'x' at the top right of the window and the app did not stop in the R console. I had to terminate the app in the R console. 
+
+## Overall
+Your app provides the functionality you mentioned in the instructions tab. There are just a few areas requiring rework for minor fixes that don't impact the overall ability to shape the data using the app. 
+
+Overall Grade: Excellent
