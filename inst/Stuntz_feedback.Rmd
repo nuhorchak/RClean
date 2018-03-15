@@ -23,15 +23,15 @@ Buttons function properly. Manipulated data table appears in my console once a s
 A handy function! When I input a new column name and click Save Name, the name I entered remains and the Column Names reverts back to the first name. The script correctly does not allow you to assign two columns the same name. What is the purpose of the search bar here if i cannot search for column names?
 
 ## Encode Dummy Variable
-This is useful! Although i assigned a dummy variable to a continuous variable then clicked reset data and the dummy variables remained? If I mess up this step is there another way for me to correct the issue? If not, do I just have to reload the app?
+This is useful! Although i assigned a dummy variable to a continuous variable then clicked reset data and the dummy variables remained? If I mess up this step is there another way for me to correct the issue? If not, do I just have to reload the app? Updata (15 Mar/SMS): I was mistakenly only clicking the RESET DATA tab and did not notice the gray Reset Data button. Upon clicking the gray button the data is reset to it's original input values. Please disregard my previous.
 
 ## Download/Save Data
 I was able to successfully download the .csv file and view it afterwards. Is there a reason I'm viewing the data table if there's no way to modify it on this tab? Seems like you could just add the download and save button on another (or each) tab. 
 
 ## Reset Data
-Again, not able to reset the data after assigning dummy variable to continuous variable. Also, I just closed the app by clicking the 'x' at the top right of the window and the app did not stop in the R console. I had to terminate the app in the R console. 
+Again, not able to reset the data after assigning dummy variable to continuous variable. Also, I just closed the app by clicking the 'x' at the top right of the window and the app did not stop in the R console. I had to terminate the app in the R console. Update (15 Mar/SMS) The reset data button works. Please disregard my previous remarks.  
 
 ## Overall
-Your app provides the functionality you mentioned in the instructions tab. There are just a few areas requiring rework for minor fixes that don't impact the overall ability to shape the data using the app. 
+Your app provides the functionality you mentioned in the instructions tab. Because the reset button works and because no other issues were encountered relative to what was proposed in the instructions I'm increasing my score from Excellent to Outstanding.
 
-Overall Grade: Excellent
+Overall Grade: Outstanding.
